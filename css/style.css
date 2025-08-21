@@ -157,6 +157,7 @@ a:focus {
   justify-content: center;
   align-items: center;
   background: none repeat scroll 0 0 #ffffff;
+  background: linear-gradient(45deg, #007bff, #00ff88);
 }
 
 .sk-spinner-wordpress.sk-spinner {
@@ -167,6 +168,7 @@ a:focus {
   position: relative;
   -webkit-animation: sk-innerCircle 1s linear infinite;
   animation: sk-innerCircle 1s linear infinite;
+  animation: rotate 2s infinite linear;
 }
 
 .sk-spinner-wordpress .sk-inner-circle {
@@ -202,6 +204,11 @@ a:focus {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 
@@ -395,15 +402,17 @@ a:focus {
 }
 
 #contact .form-control {
-  border: 2px solid #f0f0f0;
-  box-shadow: none;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  transition: all 0.4s ease-in-out;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  border-radius: 0;
+  padding: 15px 0;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
 }
 
-#contact .form-control:hover {
-  border-color: #555;
+#contact .form-control:focus {
+  border-color: #007bff;
+  box-shadow: none;
 }
 
 #contact input {
@@ -411,12 +420,14 @@ a:focus {
 }
 
 #contact input[type="submit"] {
-  background: #bfba55;
-  border-radius: 100px;
+  background: linear-gradient(45deg, #007bff, #00ff88);
+  color: white;
   border: none;
-  color: #ffffff;
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-transform: uppercase;
   font-weight: bold;
-  transition: all 0.4s ease-in-out;
+  letter-spacing: 1px;
 }
 
 #contact input[type="submit"]:hover {
@@ -574,4 +585,56 @@ footer .footer-copyright {
     padding-bottom: 60px;
   }
 
+}
+
+/* Efek hover pada navbar */
+.navbar-nav > li > a {
+    transition: all 0.3s ease;
+}
+
+.navbar-nav > li > a:hover {
+    color: #007bff !important;
+    transform: translateY(-2px);
+}
+
+/* Efek hover pada button */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Efek hover pada social icons */
+.social-icon li a {
+    transition: all 0.3s ease;
+}
+
+.social-icon li a:hover {
+    transform: translateY(-5px);
+    color: #007bff;
+}
+
+/* Parallax effect improvement */
+.parallax-section {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+/* Card style untuk form */
+#contact form {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+/* Gradient overlay */
+.overlay {
+    background: linear-gradient(45deg, rgba(0,0,0,0.7), rgba(0,123,255,0.7));
 }
