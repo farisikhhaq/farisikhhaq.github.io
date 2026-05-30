@@ -1,163 +1,370 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta name="description" content="">
-<meta name="keywords" content="">
-<meta name="author" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-<title>FARIS BIOGRAPHY</title>
-
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/font-awesome.min.css">
-
-<!-- Main css -->
-<link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css?family=Lora|Merriweather:300,400" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - FARIS BIOGRAPHY</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#10131b',
+                        surface: '#1c2027',
+                        surfaceLow: '#181c23',
+                        surfaceHigh: '#262a32',
+                        border: 'rgba(255,255,255,0.08)',
+                        borderBright: 'rgba(255,255,255,0.15)',
+                        textMain: '#e0e2ed',
+                        textMuted: '#8b91a0',
+                        textDim: '#c0c6d6',
+                        primary: '#aac7ff',
+                        primaryContainer: '#3e90ff',
+                        tertiary: '#ffb691',
+                        tertiaryContainer: '#eb6a12',
+                        purple: '#c4b5fd',
+                        purpleContainer: '#7c3aed',
+                        lime: '#bef264',
+                        limeContainer: '#65a30d',
+                        outline: '#414754',
+                    },
+                    fontFamily: {
+                        sora: ['Sora', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        sans: ['sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #10131b; color: #e0e2ed; font-family: sans-serif; }
+        .grid-bg {
+            background-image: linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .glass-panel {
+            background: rgba(15,23,42,0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+        }
+        /* Reveal animation */
+        .reveal-hidden { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-visible { opacity: 1; transform: translateY(0); }
+        
+        .timeline-dot {
+            position: absolute;
+            left: -33px;
+            top: 24px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid #1c2027;
+        }
+        .timeline-container {
+            border-left: 2px solid rgba(255,255,255,0.08);
+            margin-left: 16px;
+            padding-left: 24px;
+        }
+    </style>
 </head>
-<body>
+<body class="antialiased overflow-x-hidden">
 
-<!-- PRE LOADER -->
+    <!-- Navbar -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b border-transparent">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-decoration-none">
+                <span class="font-sora font-bold text-lg text-textMain">F A R I S <span class="text-primaryContainer">I.H</span></span>
+            </a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex gap-8 items-center h-full">
+                <a href="index.html" class="font-mono text-[12px] tracking-[0.05em] text-textMuted hover:text-textMain flex items-center gap-1 h-full transition-colors duration-300">
+                    Home
+                </a>
+                <a href="about.html" class="font-mono text-[12px] tracking-[0.05em] text-primaryContainer flex items-center gap-1 h-full transition-colors duration-300">
+                    My Biography
+                </a>
+                <a href="contact.html" class="font-mono text-[12px] tracking-[0.05em] text-textMuted hover:text-textMain flex items-center gap-1 h-full transition-colors duration-300">
+                    Contact
+                </a>
+            </nav>
 
-<div class="preloader">
-     <div class="sk-spinner sk-spinner-wordpress">
-          <span class="sk-inner-circle"></span>
-     </div>
-</div>
+            <!-- Mobile Toggle -->
+            <button id="mobile-toggle" class="md:hidden text-textMain p-2">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
 
-<!-- Navigation section  -->
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 right-0 bg-bg/95 backdrop-blur-xl border-b border-border p-6 flex-col gap-4 shadow-2xl z-40">
+            <a href="index.html" class="font-mono text-sm text-textMain">Home</a>
+            <a href="about.html" class="font-mono text-sm text-primaryContainer">My Biography</a>
+            <a href="contact.html" class="font-mono text-sm text-textMain">Contact</a>
+        </div>
+    </header>
 
-<div class="navbar navbar-default navbar-static-top" role="navigation">
-     <div class="container">
+    <!-- About Section -->
+    <section class="grid-bg min-h-screen pt-32 pb-20 relative overflow-hidden bg-surfaceLow">
+        <div class="max-w-5xl mx-auto w-full px-6 lg:px-8 relative z-10">
+            
+            <div class="flex items-center gap-3 mb-4 reveal-hidden">
+                <div class="w-0.5 h-5 bg-lime rounded-sm"></div>
+                <span class="font-mono text-[11px] tracking-[0.1em] text-textMuted uppercase">About Me</span>
+            </div>
+            
+            <h1 class="font-sora font-bold text-4xl md:text-5xl text-textMain mb-16 reveal-hidden">
+                Professional <span class="text-primaryContainer">Journey</span>
+            </h1>
 
-          <div class="navbar-header">
-               <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-               </button>
-               <a href="index.html" class="navbar-brand">F A R I S</a>
-          </div>
-          <div class="collapse navbar-collapse">
-               <ul class="nav navbar-nav navbar-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="active"><a href="about.html">My Biography</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-               </ul>
-          </div>
-
-  </div>
-</div>
-
-<!-- Home Section -->
-
-<section id="home" class="main-about parallax-section">
-     <div class="overlay"></div>
-     <div class="container">
-          <div class="row">
-
-               <div class="col-md-12 col-sm-12">
-                    <h1>About Me</h1>
-               </div>
-
-          </div>
-     </div>
-</section>
-
-<!-- About Section -->
-
-<section id="about">
-     <div class="container">
-          <div class="row">
-
-               <div class="col-md-offset-1 col-md-10 col-sm-12">
-                    <div class="col-md-4 col-sm-4">
-                         <h2>Data Pribadi</h2>
-                         <p><strong>Nama          : Faris Ikhlasul Haq</strong></p>
-                         <p><strong>Jenis Kelamin : Laki-Laki</strong></p>
-                         <p><strong>Agama         : Islam</strong></p>
-                         <p><strong>Status        : Belum Kawin</strong></p>
-                         <p><strong>Alamat        : Perum GPA Malang Blok C-15, Karangploso, Kab.Malang</strong></p>
-                         <p><strong>No.Phone      : 089653745172</strong></p>
-                         <p><strong>Email         : farisikhhaq@gmail.com</strong></p>
+            <div class="space-y-12">
+                <!-- Data Pribadi -->
+                <div class="glass-panel rounded-lg p-8 relative overflow-hidden group hover:-translate-y-1 transition-all duration-300 reveal-hidden">
+                    <div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primaryContainer to-transparent"></div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-lg bg-[rgba(62,144,255,0.1)] border border-[rgba(62,144,255,0.3)] flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-[22px]">person</span>
+                        </div>
+                        <h3 class="font-sora font-semibold text-xl text-textMain">Data Pribadi</h3>
                     </div>
-
-                    <div class="col-md-4 col-sm-4">
-                         <h2>Data Pendidikan</h2>
-                         <ol>
-                              <li><strong>Tahun 2007-2013           SDN Girimoyo 1</strong></li>
-                              <br>
-                              <li><strong>Tahun 2013-2016           SMPN 1 Singosari </strong></li>
-                              <br>
-                              <li><strong>Tahun 2016-2019           SMAN 1 Lawang </strong></li>
-                              <br>
-                              <li><strong>Tahun 2019-2023           Politeknik Negeri Malang</strong></li>
-                         </ol>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-[13px] text-textDim leading-relaxed">
+                        <div><span class="text-textMuted mr-2">Nama:</span> Faris Ikhlasul Haq</div>
+                        <div><span class="text-textMuted mr-2">Agama:</span> Islam</div>
+                        <div><span class="text-textMuted mr-2">Status:</span> Belum Kawin</div>
+                        <div><span class="text-textMuted mr-2">No.Phone:</span> 089653745172</div>
+                        <div><span class="text-textMuted mr-2">Email:</span> farisikhhaq@gmail.com</div>
+                        <div class="md:col-span-2"><span class="text-textMuted mr-2">Alamat:</span> Perum GPA Malang Blok C-15, Karangploso, Kab.Malang</div>
                     </div>
+                </div>
 
-                    <div class="col-md-4 col-sm-4">
-                         <h2>Works</h2>
-                         <p><strong>SRE , DeveOps dan Product Manager </strong></p>
+                <!-- Pengalaman -->
+                <div class="reveal-hidden">
+                    <h2 class="font-sora font-bold text-2xl text-textMain mb-8 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-lime">work</span> Pengalaman
+                    </h2>
+                    
+                    <div class="timeline-container space-y-8 relative">
+                        
+                        <!-- IDE -->
+                        <div class="relative glass-panel rounded-lg p-6 hover:border-limeContainer/50 transition-colors">
+                            <div class="timeline-dot bg-lime"></div>
+                            <h3 class="font-sora font-semibold text-lg text-textMain mb-2">Inti Daya Energitama, PT</h3>
+                            
+                            <div class="space-y-6 mt-4">
+                                <div class="relative pl-4 border-l border-border">
+                                    <div class="absolute w-2 h-2 rounded-full bg-limeContainer -left-[4.5px] top-1.5"></div>
+                                    <h4 class="font-mono text-sm font-semibold text-textMain">Product Manager <span class="text-textMuted font-normal">(Wiraswasta)</span></h4>
+                                    <p class="font-mono text-xs text-textDim mt-1">Feb 2026 - Saat ini · Surabaya, Indonesia</p>
+                                </div>
+                                <div class="relative pl-4 border-l border-border">
+                                    <div class="absolute w-2 h-2 rounded-full bg-limeContainer -left-[4.5px] top-1.5"></div>
+                                    <h4 class="font-mono text-sm font-semibold text-textMain">Product Manager <span class="text-textMuted font-normal">(Purnawaktu)</span></h4>
+                                    <p class="font-mono text-xs text-textDim mt-1">Feb 2025 - Feb 2026</p>
+                                </div>
+                                <div class="relative pl-4 border-l border-border">
+                                    <div class="absolute w-2 h-2 rounded-full bg-limeContainer -left-[4.5px] top-1.5"></div>
+                                    <h4 class="font-mono text-sm font-semibold text-textMain">Internship Coordinator <span class="text-textMuted font-normal">(Purnawaktu)</span></h4>
+                                    <p class="font-mono text-xs text-textDim mt-1">Jan 2025 - Feb 2026</p>
+                                </div>
+                                <div class="relative pl-4 border-l border-border">
+                                    <div class="absolute w-2 h-2 rounded-full bg-limeContainer -left-[4.5px] top-1.5"></div>
+                                    <h4 class="font-mono text-sm font-semibold text-textMain">DevOps Engineer <span class="text-textMuted font-normal">(Purnawaktu)</span></h4>
+                                    <p class="font-mono text-xs text-textDim mt-1">Sep 2024 - Feb 2026 · Sidoarjo, Indonesia</p>
+                                </div>
+                                <div class="relative pl-4 border-l border-border">
+                                    <div class="absolute w-2 h-2 rounded-full bg-limeContainer -left-[4.5px] top-1.5"></div>
+                                    <h4 class="font-mono text-sm font-semibold text-textMain">Site Reliability Engineer <span class="text-textMuted font-normal">(Kontrak)</span></h4>
+                                    <p class="font-mono text-xs text-textDim mt-1">Sep 2023 - Agu 2024 · Indonesia</p>
+                                </div>
+                                <div class="relative pl-4 border-l border-border">
+                                    <div class="absolute w-2 h-2 rounded-full bg-limeContainer -left-[4.5px] top-1.5"></div>
+                                    <h4 class="font-mono text-sm font-semibold text-textMain">Software Developer <span class="text-textMuted font-normal">(Magang)</span></h4>
+                                    <p class="font-mono text-xs text-textDim mt-1">Jun 2022 - Des 2022 · Sidoarjo, Indonesia</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PT SBMB -->
+                        <div class="relative glass-panel rounded-lg p-6 hover:border-limeContainer/50 transition-colors">
+                            <div class="timeline-dot bg-lime"></div>
+                            <h4 class="font-mono text-sm font-semibold text-textMain">Graduate Student Researcher</h4>
+                            <p class="font-sora text-sm text-textDim mt-1">PT. Sarana Berkah Maju Bersama</p>
+                            <p class="font-mono text-xs text-textMuted mt-1">Jul 2025 - Apr 2026</p>
+                        </div>
+
+                        <!-- WRI -->
+                        <div class="relative glass-panel rounded-lg p-6 hover:border-limeContainer/50 transition-colors">
+                            <div class="timeline-dot bg-lime"></div>
+                            <h4 class="font-mono text-sm font-semibold text-textMain">Chairman <span class="text-textMuted font-normal">(Purnawaktu)</span></h4>
+                            <p class="font-sora text-sm text-textDim mt-1">Workshop Riset Informatika</p>
+                            <p class="font-mono text-xs text-textMuted mt-1">Jan 2021 - Jan 2022 · Malang, Indonesia</p>
+                        </div>
+                        
+                        <!-- Mentee -->
+                        <div class="relative glass-panel rounded-lg p-6 hover:border-limeContainer/50 transition-colors">
+                            <div class="timeline-dot bg-lime"></div>
+                            <h4 class="font-mono text-sm font-semibold text-textMain">Divisi Mentee <span class="text-textMuted font-normal">(Purnawaktu)</span></h4>
+                            <p class="font-sora text-sm text-textDim mt-1">Kerohanian Islam Politeknik Negeri Malang</p>
+                            <p class="font-mono text-xs text-textMuted mt-1">Jul 2021 - Jul 2022 · Malang, Indonesia</p>
+                        </div>
+                        
                     </div>
+                </div>
 
-                    <div class="clearfix"></div>
+                <!-- Pendidikan -->
+                <div class="reveal-hidden">
+                    <h2 class="font-sora font-bold text-2xl text-textMain mb-8 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-purple">school</span> Pendidikan
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="glass-panel rounded-lg p-6 relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+                            <div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purpleContainer to-transparent"></div>
+                            <h3 class="font-sora font-semibold text-lg text-textMain mb-2">Politeknik Negeri Malang</h3>
+                            <p class="font-mono text-sm text-purple mb-2">Master's degree, Information Technology Project Management</p>
+                            <p class="font-mono text-xs text-textDim">Jul 2025 - Sekarang</p>
+                        </div>
 
-               </div>
-
-          </div>
-     </div>
-</section>
-
-<!-- Footer Section -->
-
-<footer>
-     <div class="container">
-          <div class="row">
-
-               <div class="col-md-5 col-md-offset-1 col-sm-6">
-                    <h3>F A R I S Blog</h3>
-                    <p>CV Website ini ditujukan untuk mengenal lebih jauh dari Faris.</p>
-                    <div class="footer-copyright">
-                         <p>Copyright &copy; 2025 Faris </p>
+                        <div class="glass-panel rounded-lg p-6 relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+                            <div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purpleContainer to-transparent"></div>
+                            <h3 class="font-sora font-semibold text-lg text-textMain mb-2">Politeknik Negeri Malang</h3>
+                            <p class="font-mono text-sm text-purple mb-2">Bachelor of Applied Science, Teknik Informatika</p>
+                            <p class="font-mono text-xs text-textDim mb-2">2019 - 2023 · IPK: 3.90</p>
+                            <p class="font-sans text-xs text-textMuted">Kegiatan: Kerohanian Islam, Workshop Riset Informatika</p>
+                        </div>
                     </div>
-               </div>
+                </div>
 
-               <div class="col-md-4 col-md-offset-1 col-sm-6">
-                    <h3>Talk to us</h3>
-                    <p><i class="fa fa-globe"></i> Malang, East Java Indonesia</p>
-                    <p><i class="fa fa-phone"></i> 0896-5374-5172</p>
-                    <p><i class="fa fa-save"></i> farisikhhaq@gmail.com</p>
-               </div>
+                <!-- Sertifikasi -->
+                <div class="reveal-hidden">
+                    <h2 class="font-sora font-bold text-2xl text-textMain mb-8 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-tertiary">workspace_premium</span> Lisensi & Sertifikasi
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="glass-panel rounded-lg p-6 hover:border-tertiaryContainer/50 transition-colors">
+                            <h4 class="font-mono text-sm font-semibold text-textMain">PKM Program Kreativitas Mahasiswa - GFT</h4>
+                            <p class="font-sans text-sm text-textDim mt-1">Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi</p>
+                            <p class="font-mono text-xs text-textMuted mt-2">Diterbitkan Nov 2022</p>
+                        </div>
 
-               <div class="clearfix col-md-12 col-sm-12">
-                    <hr>
-               </div>
+                        <div class="glass-panel rounded-lg p-6 hover:border-tertiaryContainer/50 transition-colors">
+                            <h4 class="font-mono text-sm font-semibold text-textMain">KMIPN III - JUARA III</h4>
+                            <p class="font-sans text-sm text-textDim mt-1">BAKORMA</p>
+                        </div>
 
-               <div class="col-md-12 col-sm-12">
-                    <ul class="social-icon">
-                         <li><a href="https://www.facebook.com/farisikhlasul.haq" class="fa fa-facebook"></a></li>
-                         <li><a href="https://www.instagram.com/xalfaris_26/?hl=id" class="fa fa-instagram"></a></li>
-                         
-                    </ul>
-               </div>
-               
-          </div>
-     </div>
-</footer>
+                        <div class="glass-panel rounded-lg p-6 hover:border-tertiaryContainer/50 transition-colors">
+                            <h4 class="font-mono text-sm font-semibold text-textMain">Pengembangan Perangkat Lunak & Junior Web Developer</h4>
+                            <p class="font-sans text-sm text-textDim mt-1">Kominfo</p>
+                            <p class="font-mono text-xs text-textMuted mt-2">Diterbitkan Nov 2021</p>
+                        </div>
 
-<!-- Back top -->
-<a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+                        <div class="glass-panel rounded-lg p-6 hover:border-tertiaryContainer/50 transition-colors">
+                            <h4 class="font-mono text-sm font-semibold text-textMain">Belajar Prinsip Pemrograman SOLID</h4>
+                            <p class="font-sans text-sm text-textDim mt-1">Dicoding Indonesia</p>
+                            <p class="font-mono text-xs text-textMuted mt-2">Diterbitkan Jan 2021</p>
+                        </div>
+                    </div>
+                </div>
 
-<!-- SCRIPTS -->
+            </div>
+        </div>
+    </section>
 
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.parallax.js"></script>
-<script src="js/custom.js"></script>
+    <!-- Footer -->
+    <footer class="border-t border-border pt-16 pb-8 bg-bg relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+                <div>
+                    <h3 class="font-sora font-bold text-xl text-textMain mb-4">F A R I S Blog</h3>
+                    <p class="text-textDim text-sm max-w-sm leading-relaxed mb-6">
+                        CV Website ini ditujukan untuk mengenal lebih jauh dari Faris. Engineering the future through reliable infrastructure.
+                    </p>
+                    <div class="text-textMuted font-mono text-xs">
+                        &copy; 2024 Faris's Team
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-sora font-bold text-xl text-textMain mb-4">Talk to us</h3>
+                    <div class="space-y-3">
+                        <p class="flex items-center gap-3 text-textDim text-sm">
+                            <span class="material-symbols-outlined text-primaryContainer">public</span>
+                            Malang, East Java Indonesia
+                        </p>
+                        <p class="flex items-center gap-3 text-textDim text-sm">
+                            <span class="material-symbols-outlined text-primaryContainer">phone</span>
+                            0896-5374-5172
+                        </p>
+                        <p class="flex items-center gap-3 text-textDim text-sm">
+                            <span class="material-symbols-outlined text-primaryContainer">mail</span>
+                            farisikhhaq@gmail.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-border pt-8 flex justify-between items-center flex-wrap gap-4">
+                <span class="font-mono text-[11px] text-textMuted">
+                    All systems operational.
+                </span>
+                <div class="flex gap-4">
+                    <a href="https://www.facebook.com/farisikhlasul.haq" class="text-textMuted hover:text-primaryContainer transition-colors">
+                        <span class="material-symbols-outlined">facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/xalfaris_26/?hl=id" class="text-textMuted hover:text-primaryContainer transition-colors">
+                        <span class="material-symbols-outlined">photo_camera</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
+    <!-- Scripts -->
+    <script>
+        // Navbar Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                navbar.classList.add('bg-bg/95', 'backdrop-blur-xl', 'border-borderBright');
+                navbar.classList.remove('border-transparent');
+            } else {
+                navbar.classList.remove('bg-bg/95', 'backdrop-blur-xl', 'border-borderBright');
+                navbar.classList.add('border-transparent');
+            }
+        });
+
+        // Mobile Menu
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+            const icon = mobileToggle.querySelector('span');
+            icon.innerText = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+        });
+
+        // Intersection Observer for Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+        document.querySelectorAll('.reveal-hidden').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>

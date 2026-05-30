@@ -1,160 +1,268 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - FARIS BIOGRAPHY</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#10131b',
+                        surface: '#1c2027',
+                        surfaceLow: '#181c23',
+                        surfaceHigh: '#262a32',
+                        border: 'rgba(255,255,255,0.08)',
+                        borderBright: 'rgba(255,255,255,0.15)',
+                        textMain: '#e0e2ed',
+                        textMuted: '#8b91a0',
+                        textDim: '#c0c6d6',
+                        primary: '#aac7ff',
+                        primaryContainer: '#3e90ff',
+                        tertiary: '#ffb691',
+                        tertiaryContainer: '#eb6a12',
+                        purple: '#c4b5fd',
+                        purpleContainer: '#7c3aed',
+                        lime: '#bef264',
+                        limeContainer: '#65a30d',
+                        outline: '#414754',
+                    },
+                    fontFamily: {
+                        sora: ['Sora', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        sans: ['sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #10131b; color: #e0e2ed; font-family: sans-serif; }
+        .grid-bg {
+            background-image: linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .glass-panel {
+            background: rgba(15,23,42,0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+        }
+        /* Reveal animation */
+        .reveal-hidden { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-visible { opacity: 1; transform: translateY(0); }
+        
+        .input-field {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #e0e2ed;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #3e90ff;
+            background: rgba(62,144,255,0.05);
+        }
+    </style>
 
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta name="description" content="">
-<meta name="keywords" content="">
-<meta name="author" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-<title>FARIS BIOGRAPHY</title>
-
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<script src=".//jquery-3.3.1.js"></script>
-
-<!-- Main css -->
-<link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css?family=Lora|Merriweather:300,400" rel="stylesheet">
-<script>
-     $(document).ready(()=>{
-          $('#submit').click(()=>{
-               alert('Terimakasih atas feedback yang telah diberikan  ! ')
-          })
-     })
-</script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(()=>{
+            $('#contact-form').submit((e)=>{
+                e.preventDefault();
+                alert('Terimakasih atas feedback yang telah diberikan ! ');
+                $('#contact-form')[0].reset();
+            })
+        })
+    </script>
 </head>
-<body>
+<body class="antialiased overflow-x-hidden">
 
-<!-- PRE LOADER -->
+    <!-- Navbar -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b border-transparent">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-decoration-none">
+                <span class="font-sora font-bold text-lg text-textMain">F A R I S <span class="text-primaryContainer">I.H</span></span>
+            </a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex gap-8 items-center h-full">
+                <a href="index.html" class="font-mono text-[12px] tracking-[0.05em] text-textMuted hover:text-textMain flex items-center gap-1 h-full transition-colors duration-300">
+                    Home
+                </a>
+                <a href="about.html" class="font-mono text-[12px] tracking-[0.05em] text-textMuted hover:text-textMain flex items-center gap-1 h-full transition-colors duration-300">
+                    My Biography
+                </a>
+                <a href="contact.html" class="font-mono text-[12px] tracking-[0.05em] text-primaryContainer flex items-center gap-1 h-full transition-colors duration-300">
+                    Contact
+                </a>
+            </nav>
 
-<div class="preloader">
-     <div class="sk-spinner sk-spinner-wordpress">
-          <span class="sk-inner-circle"></span>
-     </div>
-</div>
+            <!-- Mobile Toggle -->
+            <button id="mobile-toggle" class="md:hidden text-textMain p-2">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
 
-<!-- Navigation section  -->
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 right-0 bg-bg/95 backdrop-blur-xl border-b border-border p-6 flex-col gap-4 shadow-2xl">
+            <a href="index.html" class="font-mono text-sm text-textMain">Home</a>
+            <a href="about.html" class="font-mono text-sm text-textMain">My Biography</a>
+            <a href="contact.html" class="font-mono text-sm text-primaryContainer">Contact</a>
+        </div>
+    </header>
 
-<div class="navbar navbar-default navbar-static-top" role="navigation">
-     <div class="container">
+    <!-- Contact Section -->
+    <section class="grid-bg min-h-screen pt-32 pb-20 relative overflow-hidden bg-surfaceLow">
+        <div class="max-w-4xl mx-auto w-full px-6 lg:px-8 relative z-10 text-center">
+            
+            <div class="flex items-center justify-center gap-3 mb-4 reveal-hidden">
+                <div class="w-0.5 h-5 bg-tertiaryContainer rounded-sm"></div>
+                <span class="font-mono text-[11px] tracking-[0.1em] text-textMuted uppercase">Contact Us</span>
+                <div class="w-0.5 h-5 bg-tertiaryContainer rounded-sm"></div>
+            </div>
+            
+            <h1 class="font-sora font-bold text-4xl md:text-5xl text-textMain mb-6 reveal-hidden">
+                こんにちは <span class="text-tertiaryContainer">Friend !</span>
+            </h1>
+            
+            <p class="font-sans text-[16px] text-textDim leading-relaxed max-w-2xl mx-auto mb-16 reveal-hidden">
+                Disini saya meminta dengan sukarela untuk menginputkan pesan dibawah ini dan memberi kritik dan saran agar saya bisa berkembang menjadi lebih baik lagi dan kesalahan yang pernah saya perbuat bisa saya perbaiki atau di minimalisir di kemudian hari. <br><br>
+                <span class="font-mono text-primaryContainer text-sm">TERIMA KASIH ATAS PERHATIANYA.</span>
+            </p>
 
-          <div class="navbar-header">
-               <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-               </button>
-               <a href="index.html" class="navbar-brand">F A R I S</a>
-          </div>
-          <div class="collapse navbar-collapse">
-               <ul class="nav navbar-nav navbar-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">My Biography</a></li>
-                    <li class="active"><a href="contact.html">Contact</a></li>
-               </ul>
-          </div>
-
-  </div>
-</div>
-
-<!-- Home Section -->
-
-<section id="home" class="main-contact parallax-section">
-     <div class="overlay"></div>
-     <div class="container">
-          <div class="row">
-
-               <div class="col-md-12 col-sm-12">
-                    <h1>Contact Us</h1>
-               </div>
-
-          </div>
-     </div>
-</section>
-
-<!-- Contact Section -->
-
-<section id="contact">
-     <div class="container">
-          <div class="row">
-
-               <div class="col-md-offset-1 col-md-10 col-sm-12">
-                    <h2>こんにちは Friend !</h2>
-                    <p>Disini saya meminta dengan sukarela untuk menginputkan pesan dibawah ini dan memberi kritik dan saran agar saya bisa berkembang menjadi lebih baik lagi dan kesalahan yang pernah saya perbuat bisa saya perbaiki atau di minimalisir di kemudian hari. <br> TERIMA KASIH ATAS PERHATIANYA.</p>
-
-                    <form action="#" method="post">
-                         <div class="col-md-4 col-sm-4">
-                              <input name="name" type="text" class="form-control" id="name" placeholder="Name">
-                         </div>
-                         <div class="col-md-4 col-sm-4">
-                              <input name="email" type="email" class="form-control" id="email" placeholder="Email">
-                      	 </div>
-                         <div class="col-md-4 col-sm-4">
-                              <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject">
-                      	 </div>
-                         <div class="col-md-12 col-sm-12">
-                              <textarea name="message" rows="5" class="form-control" id="message" placeholder="Message"></textarea>
-                         </div>
-                         <div class="col-md-3 col-sm-6">
-                              <input name="submit" type="submit" class="form-control" id="submit" value="Send">
-                         </div>
-                    </form>
-               </div>
-
-          </div>
-     </div>
-</section>
-
-<!-- Footer Section -->
-
-<footer>
-      <div class="container">
-          <div class="row">
-
-               <div class="col-md-5 col-md-offset-1 col-sm-6">
-                    <h3>F A R I S Blog</h3>
-                    <p>CV Website ini ditujukan untuk mengenal lebih jauh dari Faris.</p>
-                    <div class="footer-copyright">
-                         <p>Copyright &copy; 2020 Faris Team</p>
+            <div class="glass-panel rounded-lg p-8 md:p-12 text-left relative overflow-hidden reveal-hidden">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primaryContainer to-tertiaryContainer"></div>
+                
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex flex-col gap-2">
+                            <label for="name" class="font-mono text-xs text-textMuted">Name</label>
+                            <input required name="name" type="text" id="name" placeholder="John Doe" class="input-field w-full rounded p-3 transition-all">
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label for="email" class="font-mono text-xs text-textMuted">Email</label>
+                            <input required name="email" type="email" id="email" placeholder="john@example.com" class="input-field w-full rounded p-3 transition-all">
+                        </div>
                     </div>
-               </div>
+                    
+                    <div class="flex flex-col gap-2">
+                        <label for="subject" class="font-mono text-xs text-textMuted">Subject</label>
+                        <input required name="subject" type="text" id="subject" placeholder="Feedback & Suggestion" class="input-field w-full rounded p-3 transition-all">
+                    </div>
+                    
+                    <div class="flex flex-col gap-2">
+                        <label for="message" class="font-mono text-xs text-textMuted">Message</label>
+                        <textarea required name="message" id="message" rows="5" placeholder="Write your message here..." class="input-field w-full rounded p-3 transition-all"></textarea>
+                    </div>
+                    
+                    <div class="pt-4 flex justify-end">
+                        <button type="submit" id="submit" class="font-mono text-[13px] tracking-[0.05em] px-8 py-3.5 bg-primaryContainer text-white rounded-[4px] hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(62,144,255,0.4)] transition-all duration-300 flex items-center gap-2 border-t border-[rgba(255,255,255,0.2)]">
+                            <span class="material-symbols-outlined text-[18px]">send</span>
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </section>
 
-               <div class="col-md-4 col-md-offset-1 col-sm-6">
-                    <h3>Talk to us</h3>
-                    <p><i class="fa fa-globe"></i> Malang, East Java Indonesia</p>
-                    <p><i class="fa fa-phone"></i> 0896-5374-5172</p>
-                    <p><i class="fa fa-save"></i> farisikhhaq@gmail.com</p>
-               </div>
+    <!-- Footer -->
+    <footer class="border-t border-border pt-16 pb-8 bg-bg relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+                <div>
+                    <h3 class="font-sora font-bold text-xl text-textMain mb-4">F A R I S Blog</h3>
+                    <p class="text-textDim text-sm max-w-sm leading-relaxed mb-6">
+                        CV Website ini ditujukan untuk mengenal lebih jauh dari Faris. Engineering the future through reliable infrastructure.
+                    </p>
+                    <div class="text-textMuted font-mono text-xs">
+                        &copy; 2024 Faris's Team
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-sora font-bold text-xl text-textMain mb-4">Talk to us</h3>
+                    <div class="space-y-3">
+                        <p class="flex items-center gap-3 text-textDim text-sm">
+                            <span class="material-symbols-outlined text-primaryContainer">public</span>
+                            Malang, East Java Indonesia
+                        </p>
+                        <p class="flex items-center gap-3 text-textDim text-sm">
+                            <span class="material-symbols-outlined text-primaryContainer">phone</span>
+                            0896-5374-5172
+                        </p>
+                        <p class="flex items-center gap-3 text-textDim text-sm">
+                            <span class="material-symbols-outlined text-primaryContainer">mail</span>
+                            farisikhhaq@gmail.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-border pt-8 flex justify-between items-center flex-wrap gap-4">
+                <span class="font-mono text-[11px] text-textMuted">
+                    All systems operational.
+                </span>
+                <div class="flex gap-4">
+                    <a href="https://www.facebook.com/farisikhlasul.haq" class="text-textMuted hover:text-primaryContainer transition-colors">
+                        <span class="material-symbols-outlined">facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/xalfaris_26/?hl=id" class="text-textMuted hover:text-primaryContainer transition-colors">
+                        <span class="material-symbols-outlined">photo_camera</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-               <div class="clearfix col-md-12 col-sm-12">
-                    <hr>
-               </div>
+    <!-- Scripts -->
+    <script>
+        // Navbar Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                navbar.classList.add('bg-bg/95', 'backdrop-blur-xl', 'border-borderBright');
+                navbar.classList.remove('border-transparent');
+            } else {
+                navbar.classList.remove('bg-bg/95', 'backdrop-blur-xl', 'border-borderBright');
+                navbar.classList.add('border-transparent');
+            }
+        });
 
-               <div class="col-md-12 col-sm-12">
-                    <ul class="social-icon">
-                         <li><a href="https://www.facebook.com/farisikhlasul.haq" class="fa fa-facebook"></a></li>
-                         <li><a href="https://www.instagram.com/xalfaris_26/?hl=id" class="fa fa-instagram"></a></li>
-                         
-                    </ul>
-               </div>
-               
-          </div>
-     </div>
-</footer>
+        // Mobile Menu
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+            const icon = mobileToggle.querySelector('span');
+            icon.innerText = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+        });
 
-<!-- Back top -->
-<a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+        // Intersection Observer for Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
-<!-- SCRIPTS -->
-
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.parallax.js"></script>
-<script src="js/custom.js"></script>
-
+        document.querySelectorAll('.reveal-hidden').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>

@@ -1,131 +1,328 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta name="description" content="">
-<meta name="keywords" content="">
-<meta name="author" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-<title>FARIS BIOGRAPHY</title>
-
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/font-awesome.min.css">
-
-<!-- Main css -->
-<link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css?family=Lora|Merriweather:300,400" rel="stylesheet">
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FARIS BIOGRAPHY</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#10131b',
+                        surface: '#1c2027',
+                        surfaceLow: '#181c23',
+                        surfaceHigh: '#262a32',
+                        border: 'rgba(255,255,255,0.08)',
+                        borderBright: 'rgba(255,255,255,0.15)',
+                        textMain: '#e0e2ed',
+                        textMuted: '#8b91a0',
+                        textDim: '#c0c6d6',
+                        primary: '#aac7ff',
+                        primaryContainer: '#3e90ff',
+                        tertiary: '#ffb691',
+                        tertiaryContainer: '#eb6a12',
+                        purple: '#c4b5fd',
+                        purpleContainer: '#7c3aed',
+                        lime: '#bef264',
+                        limeContainer: '#65a30d',
+                        outline: '#414754',
+                    },
+                    fontFamily: {
+                        sora: ['Sora', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        sans: ['sans-serif'], // Fallback for Geist
+                    },
+                    animation: {
+                        'gradient-move': 'gradientMove 6s linear infinite',
+                        'pulse-slow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        gradientMove: {
+                            '0%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #10131b;
+            color: #e0e2ed;
+            font-family: sans-serif;
+        }
+        .grid-bg {
+            background-image: linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .glass-panel {
+            background: rgba(15,23,42,0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+        }
+        .text-gradient {
+            background: linear-gradient(90deg, #3e90ff, #7c3aed, #eb6a12, #3e90ff);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Reveal animation */
+        .reveal-hidden { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-visible { opacity: 1; transform: translateY(0); }
+    </style>
 </head>
-<body>
+<body class="antialiased overflow-x-hidden">
 
-<!-- PRE LOADER -->
+    <!-- Navbar -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b border-transparent">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-decoration-none">
+                <span class="font-sora font-bold text-lg text-textMain">F A R I S <span class="text-primaryContainer">I.H</span></span>
+            </a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex gap-8 items-center h-full">
+                <a href="index.html" class="font-mono text-[12px] tracking-[0.05em] text-primaryContainer flex items-center gap-1 h-full transition-colors duration-300">
+                    Home
+                </a>
+                <a href="about.html" class="font-mono text-[12px] tracking-[0.05em] text-textMuted hover:text-textMain flex items-center gap-1 h-full transition-colors duration-300">
+                    My Biography
+                </a>
+                <a href="contact.html" class="font-mono text-[12px] tracking-[0.05em] text-textMuted hover:text-textMain flex items-center gap-1 h-full transition-colors duration-300">
+                    Contact
+                </a>
+            </nav>
 
-<div class="preloader">
-     <div class="sk-spinner sk-spinner-wordpress">
-          <span class="sk-inner-circle"></span>
-     </div>
-</div>
+            <!-- Mobile Toggle -->
+            <button id="mobile-toggle" class="md:hidden text-textMain p-2">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
 
-<!-- Navigation section  -->
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 right-0 bg-bg/95 backdrop-blur-xl border-b border-border p-6 flex-col gap-4 shadow-2xl">
+            <a href="index.html" class="font-mono text-sm text-primaryContainer">Home</a>
+            <a href="about.html" class="font-mono text-sm text-textMain">My Biography</a>
+            <a href="contact.html" class="font-mono text-sm text-textMain">Contact</a>
+        </div>
+    </header>
 
-<div class="navbar navbar-default navbar-static-top" role="navigation">
-     <div class="container">
+    <!-- Hero Section -->
+    <section class="grid-bg min-h-screen flex items-center pt-20 relative overflow-hidden">
+        <canvas id="particle-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+        
+        <!-- Glow Orbs -->
+        <div class="absolute top-[20%] left-[10%] w-[600px] h-[600px] rounded-full" style="background: radial-gradient(circle, rgba(62,144,255,0.08) 0%, transparent 70%); pointer-events: none;"></div>
+        <div class="absolute top-[40%] right-[5%] w-[400px] h-[400px] rounded-full" style="background: radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 70%); pointer-events: none;"></div>
 
-          <div class="navbar-header">
-               <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-               </button>
-               <a href="index.html" class="navbar-brand">F A R I S</a>
-          </div>
-          <div class="collapse navbar-collapse">
-               <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="about.html">My Biography</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-               </ul>
-          </div>
+        <div class="max-w-7xl mx-auto w-full px-6 lg:px-8 relative z-10 py-20">
+            <div class="max-w-3xl reveal-hidden">
+                <span class="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-[0.08em] text-lime bg-[rgba(101,163,13,0.12)] border border-[rgba(101,163,13,0.3)] px-3 py-1 rounded-full">
+                    <span class="w-1.5 h-1.5 rounded-full bg-lime animate-pulse-slow"></span>
+                    ⬡ PORTFOLIO · FARIS I.H
+                </span>
 
-  </div>
-</div>
+                <h1 class="font-sora font-bold text-5xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight text-textMain mt-6 mb-6">
+                    こんにちは ! <br />
+                    <span class="text-gradient animate-gradient-move">I'M Faris Ikhlasul Haq</span>
+                </h1>
 
-<!-- Home Section -->
+                <p class="text-lg md:text-xl text-textDim max-w-2xl leading-relaxed mb-10">
+                    Welcome to my biographics. I am an SRE, DevOps, and Product Manager passionate about engineering the future and building reliable digital infrastructure.
+                </p>
 
-<section id="home" class="main-home parallax-section">
-     <div class="overlay"></div>
-     <div id="particles-js"></div>
-     <div class="container">
-          <div class="row">
+                <div class="flex flex-wrap gap-4 mb-16">
+                    <a href="about.html" class="font-mono text-[13px] tracking-[0.05em] px-7 py-3.5 bg-primaryContainer text-white rounded-[4px] hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(62,144,255,0.4)] transition-all duration-300 flex items-center gap-2 border-t border-[rgba(255,255,255,0.2)]">
+                        <span class="material-symbols-outlined text-[18px]">person</span>
+                        Yuk Jelajahi Lebih Lanjut
+                    </a>
+                    <a href="contact.html" class="font-mono text-[13px] tracking-[0.05em] px-7 py-3.5 text-textMain rounded-[4px] border border-outline hover:bg-surfaceHigh transition-all duration-300 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">mail</span>
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-               <div class="col-md-12 col-sm-12" data-aos="fade-up" data-aos-duration="1000">
-                    <h1>こんにちは ! I'M Faris I.H</h1>
-                    <h4 data-aos="fade-up" data-aos-delay="200">Welcome To My Biographics</h4>
-                    <a href="about.html" class="smoothScroll btn btn-default" data-aos="fade-up" data-aos-delay="400">Yuk Jelajahi Lebih Lanjut</a>
-               </div>
-
-          </div>
-     </div>
-</section>
-
-
-<!-- Footer Section -->
-
-<footer>
-     <div class="container">
-          <div class="row">
-
-               <div class="col-md-5 col-md-offset-1 col-sm-6">
-                    <h3>F A R I S</h3>
-                    <p>Website Ini mengenal lebih jauh dari Faris Ikhlasul H</p>
-                    <div class="footer-copyright">
-                         <p>Copyright &copy; 2024 Faris's Team</p>
+    <!-- Footer -->
+    <footer class="border-t border-border pt-16 pb-8 bg-bg relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+                <div>
+                    <h3 class="font-sora font-bold text-xl text-textMain mb-4">F A R I S</h3>
+                    <p class="text-textDim text-sm max-w-sm leading-relaxed mb-6">
+                        Website Ini mengenal lebih jauh dari Faris Ikhlasul H. Engineering the future through reliable infrastructure.
+                    </p>
+                    <div class="text-textMuted font-mono text-xs">
+                        &copy; 2024 Faris's Team
                     </div>
-               </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-sora font-bold text-xl text-textMain mb-4">Talk to us</h3>
+                    <div class="space-y-3">
+                        <p class="flex items-center gap-3 text-textDim text-sm">
+                            <span class="material-symbols-outlined text-primaryContainer">public</span>
+                            Malang, East Java Indonesia
+                        </p>
+                        <p class="flex items-center gap-3 text-textDim text-sm">
+                            <span class="material-symbols-outlined text-primaryContainer">phone</span>
+                            0896-5374-5172
+                        </p>
+                        <p class="flex items-center gap-3 text-textDim text-sm">
+                            <span class="material-symbols-outlined text-primaryContainer">mail</span>
+                            farisikhhaq@gmail.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-border pt-8 flex justify-between items-center flex-wrap gap-4">
+                <span class="font-mono text-[11px] text-textMuted">
+                    All systems operational.
+                </span>
+                <div class="flex gap-4">
+                    <a href="https://www.facebook.com/farisikhlasul.haq" class="text-textMuted hover:text-primaryContainer transition-colors">
+                        <span class="material-symbols-outlined">facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/xalfaris_26/?hl=id" class="text-textMuted hover:text-primaryContainer transition-colors">
+                        <span class="material-symbols-outlined">photo_camera</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-               <div class="col-md-4 col-md-offset-1 col-sm-6">
-                    <h3>Talk to us</h3>
-                    <p><i class="fa fa-globe"></i> Malang, East Java Indonesia</p>
-                    <p><i class="fa fa-phone"></i> 0896-5374-5172</p>
-                    <p><i class="fa fa-save"></i> farisikhhaq@gmail.com</p>
-               </div>
+    <!-- Scripts -->
+    <script>
+        // Navbar Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                navbar.classList.add('bg-bg/95', 'backdrop-blur-xl', 'border-borderBright');
+                navbar.classList.remove('border-transparent');
+            } else {
+                navbar.classList.remove('bg-bg/95', 'backdrop-blur-xl', 'border-borderBright');
+                navbar.classList.add('border-transparent');
+            }
+        });
 
-               <div class="clearfix col-md-12 col-sm-12">
-                    <hr>
-               </div>
+        // Mobile Menu
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+            const icon = mobileToggle.querySelector('span');
+            icon.innerText = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+        });
 
-               <div class="col-md-12 col-sm-12">
-                    <ul class="social-icon">
-                         <li><a href="https://www.facebook.com/farisikhlasul.haq" class="fa fa-facebook"></a></li>
-                         <li><a href="https://www.instagram.com/xalfaris_26/?hl=id" class="fa fa-instagram"></a></li>
-                         
-                    </ul>
-               </div>
-               
-          </div>
-     </div>
-</footer>
+        // Intersection Observer for Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
-<!-- Back top -->
-<a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+        document.querySelectorAll('.reveal-hidden').forEach(el => observer.observe(el));
 
-<!-- SCRIPTS -->
+        // Particle Background
+        const canvas = document.getElementById('particle-canvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            const numParticles = Math.min(window.innerWidth / 15, 80);
+            
+            const resize = () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            };
+            window.addEventListener('resize', resize);
+            resize();
 
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/particles.min.js"></script>
-<script src="js/app.js"></script>
-<script src="js/jquery.parallax.js"></script>
-<script src="js/smoothscroll.js"></script>
-<script src="js/custom.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
+            for (let i = 0; i < numParticles; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 1.5,
+                    vy: (Math.random() - 0.5) * 1.5,
+                    radius: Math.random() * 2 + 1
+                });
+            }
 
+            let mouse = { x: null, y: null };
+            window.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                mouse.x = e.clientX - rect.left;
+                mouse.y = e.clientY - rect.top;
+            });
+            window.addEventListener('mouseout', () => {
+                mouse.x = null;
+                mouse.y = null;
+            });
+
+            const draw = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const pColor = 'rgba(62, 144, 255, 0.4)';
+                const lColor = '62, 144, 255';
+                
+                for (let i = 0; i < numParticles; i++) {
+                    const p = particles[i];
+                    if (mouse.x != null && mouse.y != null) {
+                        const dx = mouse.x - p.x;
+                        const dy = mouse.y - p.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 200) {
+                            p.x += dx * 0.02;
+                            p.y += dy * 0.02;
+                        }
+                    }
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = pColor;
+                    ctx.fill();
+
+                    for (let j = i + 1; j < numParticles; j++) {
+                        const p2 = particles[j];
+                        const dx = p.x - p2.x;
+                        const dy = p.y - p2.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist < 150) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = `rgba(${lColor}, ${0.2 - dist / 750})`;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(draw);
+            };
+            draw();
+        }
+    </script>
 </body>
 </html>
