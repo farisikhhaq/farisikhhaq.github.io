@@ -249,6 +249,11 @@
         <source src="https://stream.zeno.fm/f3wvbbqmdg8uv" type="audio/mpeg">
     </audio>
 
+    <!-- UI Click Sound -->
+    <audio id="ui-click-sound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" type="audio/mpeg">
+    </audio>
+
     <!-- Scripts -->
     <script>
         // Navbar Scroll
@@ -308,6 +313,25 @@
             } else {
                 playLofi();
             }
+        });
+
+        // UI Click Sound Logic
+        const uiClickSound = document.getElementById('ui-click-sound');
+        uiClickSound.volume = 0.4;
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('click', (e) => {
+                if (el.id === 'lofi-toggle') return;
+                
+                uiClickSound.currentTime = 0;
+                uiClickSound.play().catch(()=>{});
+                
+                if (el.tagName.toLowerCase() === 'a' && el.getAttribute('target') !== '_blank' && el.href && !el.href.startsWith('mailto:') && !el.href.startsWith('tel:')) {
+                    e.preventDefault();
+                    setTimeout(() => {
+                        window.location.href = el.href;
+                    }, 150);
+                }
+            });
         });
 
         // Intersection Observer for Reveal
