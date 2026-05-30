@@ -172,6 +172,20 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- Financial & Trade Analyst -->
+                        <div class="relative glass-panel rounded-lg p-6 hover:border-limeContainer/50 transition-colors">
+                            <div class="timeline-dot bg-lime"></div>
+                            <h3 class="font-sora font-semibold text-lg text-textMain mb-2">Independent / Freelance</h3>
+                            
+                            <div class="space-y-6 mt-4">
+                                <div class="relative pl-4 border-l border-border">
+                                    <div class="absolute w-2 h-2 rounded-full bg-limeContainer -left-[4.5px] top-1.5"></div>
+                                    <h4 class="font-mono text-sm font-semibold text-textMain">Financial Analyst & Trade Analyst <span class="text-textMuted font-normal">(Self-employed)</span></h4>
+                                    <p class="font-mono text-xs text-textDim mt-1">2019 - Present</p>
+                                </div>
+                            </div>
+                        </div>
 
                         <!-- IDE -->
                         <div class="relative glass-panel rounded-lg p-6 hover:border-limeContainer/50 transition-colors">
@@ -373,8 +387,12 @@
             });
         };
 
-        // Attempt autoplay on load
-        window.addEventListener('DOMContentLoaded', playLofi);
+        // Attempt autoplay after a delay of 6 seconds
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                if (!isPlaying) playLofi();
+            }, 6000);
+        });
         
         // Fallback: play on first interaction if blocked
         document.body.addEventListener('click', () => {
