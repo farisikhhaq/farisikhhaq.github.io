@@ -295,11 +295,11 @@
             });
         };
 
-        // Attempt autoplay after a delay of 2 seconds
+        // Attempt autoplay after a delay of 1 second
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 if (!isPlaying) playLofi();
-            }, 2000);
+            }, 1000);
         });
         
         // Fallback: play on first interaction if blocked

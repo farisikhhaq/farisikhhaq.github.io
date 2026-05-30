@@ -127,31 +127,51 @@
         <div class="absolute top-[40%] right-[5%] w-[400px] h-[400px] rounded-full" style="background: radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 70%); pointer-events: none;"></div>
 
         <div class="max-w-7xl mx-auto w-full px-6 lg:px-8 relative z-10 py-20">
-            <div class="max-w-3xl reveal-hidden">
-                <span class="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-[0.08em] text-lime bg-[rgba(101,163,13,0.12)] border border-[rgba(101,163,13,0.3)] px-3 py-1 rounded-full">
-                    <span class="w-1.5 h-1.5 rounded-full bg-lime animate-pulse-slow"></span>
-                    ⬡ FOUNDER AT SINVITRIX LABS & AI RESEARCHER
-                </span>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Text Column -->
+                <div class="lg:col-span-7 reveal-hidden">
+                    <span class="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-[0.08em] text-lime bg-[rgba(101,163,13,0.12)] border border-[rgba(101,163,13,0.3)] px-3 py-1 rounded-full">
+                        <span class="w-1.5 h-1.5 rounded-full bg-lime animate-pulse-slow"></span>
+                        ⬡ FOUNDER AT SINVITRIX LABS & AI RESEARCHER
+                    </span>
 
-                <h1 class="font-sora font-bold text-5xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight text-textMain mt-6 mb-6">
-                    こんにちは ! <br />
-                    <span class="text-gradient animate-gradient-move">I'm Faris Ikhlasul Haq</span>
-                </h1>
+                    <h1 class="font-sora font-bold text-5xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight text-textMain mt-6 mb-6">
+                        こんにちは ! <br />
+                        <span class="text-gradient animate-gradient-move">I'm Faris Ikhlasul Haq</span>
+                    </h1>
 
-                <p class="text-lg md:text-xl text-textDim max-w-2xl leading-relaxed mb-10 font-sans">
-                    Welcome to my professional space. I am the Founder of Sinvitrix Labs, an AI Researcher, and a Financial & Trade Analyst. I specialize in Product Management, DevOps, and Site Reliability Engineering, focusing on architecting robust digital infrastructure and bringing innovative products to life.
-                </p>
+                    <p class="text-lg md:text-xl text-textDim max-w-2xl leading-relaxed mb-10 font-sans">
+                        Welcome to my professional space. I am the Founder of Sinvitrix Labs, an AI Researcher, and a Financial & Trade Analyst. I specialize in Product Management, DevOps, and Site Reliability Engineering, focusing on architecting robust digital infrastructure and bringing innovative products to life.
+                    </p>
 
-                <div class="flex flex-wrap gap-4 mb-16">
-                    <a href="about.html" class="font-mono text-[13px] tracking-[0.05em] px-7 py-3.5 bg-primaryContainer text-white rounded-[4px] hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(62,144,255,0.4)] transition-all duration-300 flex items-center gap-2 border-t border-[rgba(255,255,255,0.2)]">
-                        <span class="material-symbols-outlined text-[18px]">person</span>
-                        Explore My Journey
-                    </a>
-                    <a href="projects.html" class="font-mono text-[13px] tracking-[0.05em] px-7 py-3.5 text-textMain rounded-[4px] border border-outline hover:bg-surfaceHigh transition-all duration-300 flex items-center gap-2">
-                        <span class="material-symbols-outlined text-[18px]">rocket_launch</span>
-                        View Achievements
-                    </a>
+                    <div class="flex flex-wrap gap-4 mb-16">
+                        <a href="about.html" class="font-mono text-[13px] tracking-[0.05em] px-7 py-3.5 bg-primaryContainer text-white rounded-[4px] hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(62,144,255,0.4)] transition-all duration-300 flex items-center gap-2 border-t border-[rgba(255,255,255,0.2)]">
+                            <span class="material-symbols-outlined text-[18px]">person</span>
+                            Explore My Journey
+                        </a>
+                        <a href="projects.html" class="font-mono text-[13px] tracking-[0.05em] px-7 py-3.5 text-textMain rounded-[4px] border border-outline hover:bg-surfaceHigh transition-all duration-300 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+                            View Achievements
+                        </a>
+                    </div>
                 </div>
+
+                <!-- Image Column -->
+                <div class="lg:col-span-5 reveal-hidden mt-8 lg:mt-0">
+                    <div class="relative w-full max-w-md mx-auto aspect-square group">
+                        <!-- Glow Effect Behind -->
+                        <div class="absolute inset-0 bg-primary/20 rounded-full blur-[80px] animate-pulse-slow group-hover:bg-purple/30 transition-colors duration-700"></div>
+                        
+                        <!-- Image with CSS blending and masking -->
+                        <img src="images/profile-hero.jpg" alt="Faris Ikhlasul Haq" 
+                             class="relative z-10 w-full h-full object-cover transition-all duration-700 ease-in-out saturate-50 group-hover:saturate-100"
+                             style="-webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 75%); mask-image: radial-gradient(circle at center, black 40%, transparent 75%); mix-blend-mode: luminosity;" 
+                             onmouseover="this.style.mixBlendMode='normal'" 
+                             onmouseout="this.style.mixBlendMode='luminosity'">
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -262,11 +282,11 @@
             });
         };
 
-        // Attempt autoplay after a delay of 2 seconds
+        // Attempt autoplay after a delay of 1 second
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 if (!isPlaying) playLofi();
-            }, 2000);
+            }, 1000);
         });
         
         // Fallback: play on first interaction if blocked
