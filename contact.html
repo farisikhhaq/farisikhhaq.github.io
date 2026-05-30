@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - FARIS BIOGRAPHY</title>
+    <title>Contact - Faris Ikhlasul Haq</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -81,7 +81,7 @@
         $(document).ready(()=>{
             $('#contact-form').submit((e)=>{
                 e.preventDefault();
-                alert('Terimakasih atas feedback yang telah diberikan ! ');
+                alert('Terima kasih atas pesan dan feedback yang Anda berikan!');
                 $('#contact-form')[0].reset();
             })
         })
@@ -102,7 +102,10 @@
                     Home
                 </a>
                 <a href="about.html" class="font-mono text-[12px] tracking-[0.05em] text-textMuted hover:text-textMain flex items-center gap-1 h-full transition-colors duration-300">
-                    My Biography
+                    Biography
+                </a>
+                <a href="projects.html" class="font-mono text-[12px] tracking-[0.05em] text-textMuted hover:text-textMain flex items-center gap-1 h-full transition-colors duration-300">
+                    Projects & Achievements
                 </a>
                 <a href="contact.html" class="font-mono text-[12px] tracking-[0.05em] text-primaryContainer flex items-center gap-1 h-full transition-colors duration-300">
                     Contact
@@ -116,15 +119,16 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden absolute top-full left-0 right-0 bg-bg/95 backdrop-blur-xl border-b border-border p-6 flex-col gap-4 shadow-2xl">
+        <div id="mobile-menu" class="hidden absolute top-full left-0 right-0 bg-bg/95 backdrop-blur-xl border-b border-border p-6 flex-col gap-4 shadow-2xl z-40">
             <a href="index.html" class="font-mono text-sm text-textMain">Home</a>
-            <a href="about.html" class="font-mono text-sm text-textMain">My Biography</a>
+            <a href="about.html" class="font-mono text-sm text-textMain">Biography</a>
+            <a href="projects.html" class="font-mono text-sm text-textMain">Projects & Achievements</a>
             <a href="contact.html" class="font-mono text-sm text-primaryContainer">Contact</a>
         </div>
     </header>
 
     <!-- Contact Section -->
-    <section class="grid-bg min-h-screen pt-32 pb-20 relative overflow-hidden bg-surfaceLow">
+    <section class="grid-bg min-h-screen pt-32 pb-20 relative overflow-hidden bg-surfaceLow flex flex-col justify-center">
         <div class="max-w-4xl mx-auto w-full px-6 lg:px-8 relative z-10 text-center">
             
             <div class="flex items-center justify-center gap-3 mb-4 reveal-hidden">
@@ -134,13 +138,19 @@
             </div>
             
             <h1 class="font-sora font-bold text-4xl md:text-5xl text-textMain mb-6 reveal-hidden">
-                こんにちは <span class="text-tertiaryContainer">Friend !</span>
+                Let's <span class="text-tertiaryContainer">Connect</span>
             </h1>
             
-            <p class="font-sans text-[16px] text-textDim leading-relaxed max-w-2xl mx-auto mb-16 reveal-hidden">
-                Disini saya meminta dengan sukarela untuk menginputkan pesan dibawah ini dan memberi kritik dan saran agar saya bisa berkembang menjadi lebih baik lagi dan kesalahan yang pernah saya perbuat bisa saya perbaiki atau di minimalisir di kemudian hari. <br><br>
-                <span class="font-mono text-primaryContainer text-sm">TERIMA KASIH ATAS PERHATIANYA.</span>
+            <p class="font-sans text-[16px] text-textDim leading-relaxed max-w-2xl mx-auto mb-10 reveal-hidden">
+                Saya selalu terbuka untuk berdiskusi tentang peluang baru, feedback, kolaborasi proyek, atau sekadar berbincang. Silakan hubungi saya melalui formulir di bawah ini atau secara langsung melalui WhatsApp.
             </p>
+
+            <div class="flex justify-center mb-16 reveal-hidden">
+                <a href="https://wa.me/6289653745172" target="_blank" class="font-mono text-[13px] tracking-[0.05em] px-8 py-3.5 bg-[#25D366] text-white rounded-full hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(37,211,102,0.4)] transition-all duration-300 flex items-center gap-3 border border-[rgba(255,255,255,0.2)]">
+                    <span class="material-symbols-outlined text-[20px]">chat</span>
+                    Chat on WhatsApp
+                </a>
+            </div>
 
             <div class="glass-panel rounded-lg p-8 md:p-12 text-left relative overflow-hidden reveal-hidden">
                 <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primaryContainer to-tertiaryContainer"></div>
@@ -184,30 +194,30 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
                 <div>
-                    <h3 class="font-sora font-bold text-xl text-textMain mb-4">F A R I S Blog</h3>
-                    <p class="text-textDim text-sm max-w-sm leading-relaxed mb-6">
-                        CV Website ini ditujukan untuk mengenal lebih jauh dari Faris. Engineering the future through reliable infrastructure.
+                    <h3 class="font-sora font-bold text-xl text-textMain mb-4">Faris Ikhlasul Haq</h3>
+                    <p class="text-textDim text-sm max-w-sm leading-relaxed mb-6 font-sans">
+                        Bridging the gap between software engineering, systems reliability, and product management. Architecting digital solutions for the future.
                     </p>
                     <div class="text-textMuted font-mono text-xs">
-                        &copy; 2024 Faris's Team
+                        &copy; 2024 Faris I.H
                     </div>
                 </div>
                 
                 <div>
-                    <h3 class="font-sora font-bold text-xl text-textMain mb-4">Talk to us</h3>
-                    <div class="space-y-3">
-                        <p class="flex items-center gap-3 text-textDim text-sm">
-                            <span class="material-symbols-outlined text-primaryContainer">public</span>
-                            Malang, East Java Indonesia
-                        </p>
-                        <p class="flex items-center gap-3 text-textDim text-sm">
-                            <span class="material-symbols-outlined text-primaryContainer">phone</span>
-                            0896-5374-5172
-                        </p>
-                        <p class="flex items-center gap-3 text-textDim text-sm">
-                            <span class="material-symbols-outlined text-primaryContainer">mail</span>
+                    <h3 class="font-sora font-bold text-xl text-textMain mb-4">Let's Connect</h3>
+                    <div class="space-y-3 font-sans">
+                        <a href="https://wa.me/6289653745172" target="_blank" class="flex items-center gap-3 text-textDim text-sm hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-primaryContainer text-lg">chat</span>
+                            +62 896-5374-5172 (WhatsApp)
+                        </a>
+                        <a href="mailto:farisikhhaq@gmail.com" class="flex items-center gap-3 text-textDim text-sm hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-primaryContainer text-lg">mail</span>
                             farisikhhaq@gmail.com
-                        </p>
+                        </a>
+                        <a href="https://sinvitrixlabs.biz.id" target="_blank" class="flex items-center gap-3 text-textDim text-sm hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-primaryContainer text-lg">public</span>
+                            Sinvitrix Labs (sinvitrixlabs.biz.id)
+                        </a>
                     </div>
                 </div>
             </div>
@@ -217,16 +227,27 @@
                     All systems operational.
                 </span>
                 <div class="flex gap-4">
-                    <a href="https://www.facebook.com/farisikhlasul.haq" class="text-textMuted hover:text-primaryContainer transition-colors">
-                        <span class="material-symbols-outlined">facebook</span>
+                    <a href="https://www.linkedin.com/in/farisikhhaq/" target="_blank" class="text-textMuted hover:text-primaryContainer transition-colors" title="LinkedIn">
+                        <span class="material-symbols-outlined">work</span>
                     </a>
-                    <a href="https://www.instagram.com/xalfaris_26/?hl=id" class="text-textMuted hover:text-primaryContainer transition-colors">
+                    <a href="https://instagram.com/farisikhlasul.h" target="_blank" class="text-textMuted hover:text-primaryContainer transition-colors" title="Personal Instagram">
                         <span class="material-symbols-outlined">photo_camera</span>
+                    </a>
+                    <a href="https://instagram.com/sinvitrixlabs_" target="_blank" class="text-textMuted hover:text-primaryContainer transition-colors" title="Sinvitrix Labs Instagram">
+                        <span class="material-symbols-outlined">rocket_launch</span>
                     </a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Lofi Audio Player -->
+    <button id="lofi-toggle" class="fixed bottom-6 left-6 z-50 glass-panel rounded-full p-4 flex items-center justify-center hover:bg-surfaceHigh transition-colors text-textMain shadow-[0_0_20px_rgba(0,0,0,0.5)] border-border group" title="Play Lofi Music">
+        <span class="material-symbols-outlined group-hover:scale-110 transition-transform" id="lofi-icon">music_off</span>
+    </button>
+    <audio id="lofi-audio" loop preload="none">
+        <source src="https://stream.zeno.fm/f3wvbbqmdg8uv" type="audio/mpeg">
+    </audio>
 
     <!-- Scripts -->
     <script>
@@ -250,6 +271,26 @@
             mobileMenu.classList.toggle('flex');
             const icon = mobileToggle.querySelector('span');
             icon.innerText = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+        });
+
+        // Lofi Audio
+        const lofiBtn = document.getElementById('lofi-toggle');
+        const lofiAudio = document.getElementById('lofi-audio');
+        const lofiIcon = document.getElementById('lofi-icon');
+        lofiAudio.volume = 0.3;
+        let isPlaying = false;
+        
+        lofiBtn.addEventListener('click', () => {
+            if(isPlaying) {
+                lofiAudio.pause();
+                lofiIcon.innerText = 'music_off';
+                lofiIcon.classList.remove('text-primary');
+            } else {
+                lofiAudio.play().catch(e => console.log("Audio play failed:", e));
+                lofiIcon.innerText = 'music_note';
+                lofiIcon.classList.add('text-primary');
+            }
+            isPlaying = !isPlaying;
         });
 
         // Intersection Observer for Reveal
