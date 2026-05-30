@@ -294,17 +294,34 @@
         lofiAudio.volume = 0.3;
         let isPlaying = false;
         
-        lofiBtn.addEventListener('click', () => {
+        const playLofi = () => {
+            lofiAudio.play().then(() => {
+                isPlaying = true;
+                lofiIcon.innerText = 'music_note';
+                lofiIcon.classList.add('text-primary');
+            }).catch(e => {
+                console.log("Autoplay blocked. Waiting for user interaction.");
+            });
+        };
+
+        // Attempt autoplay on load
+        window.addEventListener('DOMContentLoaded', playLofi);
+        
+        // Fallback: play on first interaction if blocked
+        document.body.addEventListener('click', () => {
+            if (!isPlaying) playLofi();
+        }, { once: true });
+        
+        lofiBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             if(isPlaying) {
                 lofiAudio.pause();
+                isPlaying = false;
                 lofiIcon.innerText = 'music_off';
                 lofiIcon.classList.remove('text-primary');
             } else {
-                lofiAudio.play().catch(e => console.log("Audio play failed:", e));
-                lofiIcon.innerText = 'music_note';
-                lofiIcon.classList.add('text-primary');
+                playLofi();
             }
-            isPlaying = !isPlaying;
         });
 
         // Intersection Observer for Reveal

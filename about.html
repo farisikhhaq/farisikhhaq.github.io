@@ -159,6 +159,20 @@
                     
                     <div class="timeline-container space-y-8 relative">
                         
+                        <!-- Sinvitrix Labs -->
+                        <div class="relative glass-panel rounded-lg p-6 hover:border-limeContainer/50 transition-colors">
+                            <div class="timeline-dot bg-lime"></div>
+                            <h3 class="font-sora font-semibold text-lg text-textMain mb-2">Sinvitrix Labs</h3>
+                            
+                            <div class="space-y-6 mt-4">
+                                <div class="relative pl-4 border-l border-border">
+                                    <div class="absolute w-2 h-2 rounded-full bg-limeContainer -left-[4.5px] top-1.5"></div>
+                                    <h4 class="font-mono text-sm font-semibold text-textMain">Founder & AI Researcher <span class="text-textMuted font-normal">(Full-time)</span></h4>
+                                    <p class="font-mono text-xs text-textDim mt-1">Sep 2023 - Present · Indonesia</p>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- IDE -->
                         <div class="relative glass-panel rounded-lg p-6 hover:border-limeContainer/50 transition-colors">
                             <div class="timeline-dot bg-lime"></div>
@@ -344,17 +358,34 @@
         lofiAudio.volume = 0.3;
         let isPlaying = false;
         
-        lofiBtn.addEventListener('click', () => {
+        const playLofi = () => {
+            lofiAudio.play().then(() => {
+                isPlaying = true;
+                lofiIcon.innerText = 'music_note';
+                lofiIcon.classList.add('text-primary');
+            }).catch(e => {
+                console.log("Autoplay blocked. Waiting for user interaction.");
+            });
+        };
+
+        // Attempt autoplay on load
+        window.addEventListener('DOMContentLoaded', playLofi);
+        
+        // Fallback: play on first interaction if blocked
+        document.body.addEventListener('click', () => {
+            if (!isPlaying) playLofi();
+        }, { once: true });
+        
+        lofiBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             if(isPlaying) {
                 lofiAudio.pause();
+                isPlaying = false;
                 lofiIcon.innerText = 'music_off';
                 lofiIcon.classList.remove('text-primary');
             } else {
-                lofiAudio.play().catch(e => console.log("Audio play failed:", e));
-                lofiIcon.innerText = 'music_note';
-                lofiIcon.classList.add('text-primary');
+                playLofi();
             }
-            isPlaying = !isPlaying;
         });
 
         // Intersection Observer for Reveal

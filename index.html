@@ -139,7 +139,7 @@
                 </h1>
 
                 <p class="text-lg md:text-xl text-textDim max-w-2xl leading-relaxed mb-10 font-sans">
-                    Welcome to my professional space. I specialize in Product Management, DevOps, and Site Reliability Engineering, focusing on architecting robust digital infrastructure and bringing innovative products to life.
+                    Welcome to my professional space. I am the Founder of Sinvitrix Labs and an AI Researcher, specializing in Product Management, DevOps, and Site Reliability Engineering. I focus on architecting robust digital infrastructure and bringing innovative products to life.
                 </p>
 
                 <div class="flex flex-wrap gap-4 mb-16">
@@ -247,17 +247,34 @@
         lofiAudio.volume = 0.3;
         let isPlaying = false;
         
-        lofiBtn.addEventListener('click', () => {
+        const playLofi = () => {
+            lofiAudio.play().then(() => {
+                isPlaying = true;
+                lofiIcon.innerText = 'music_note';
+                lofiIcon.classList.add('text-primary');
+            }).catch(e => {
+                console.log("Autoplay blocked. Waiting for user interaction.");
+            });
+        };
+
+        // Attempt autoplay on load
+        window.addEventListener('DOMContentLoaded', playLofi);
+        
+        // Fallback: play on first interaction if blocked
+        document.body.addEventListener('click', () => {
+            if (!isPlaying) playLofi();
+        }, { once: true });
+        
+        lofiBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             if(isPlaying) {
                 lofiAudio.pause();
+                isPlaying = false;
                 lofiIcon.innerText = 'music_off';
                 lofiIcon.classList.remove('text-primary');
             } else {
-                lofiAudio.play().catch(e => console.log("Audio play failed:", e));
-                lofiIcon.innerText = 'music_note';
-                lofiIcon.classList.add('text-primary');
+                playLofi();
             }
-            isPlaying = !isPlaying;
         });
 
         // Intersection Observer for Reveal
